@@ -6,13 +6,11 @@ SELECT ((SELECT COUNT(*)
 	 FROM part_nyc 
 	 WHERE color = (SELECT color_id 
 			FROM color 
-			WHERE color_name = 'Red'))
-	UNION
-	(SELECT COUNT(*) 
-	 FROM part_sfo 
-	 WHERE color =  (SELECT color_id 
-	 		 FROM color 
-			 WHERE color_name = 'Red')));
+			WHERE color_name = 'Red'))+(SELECT COUNT(*) 
+	 					    FROM part_sfo 
+	   					    WHERE color =  (SELECT color_id 
+	 		 	 		    FROM color 
+						    WHERE color_name = 'Red'))) AS Total_parts;
 			 
 SELECT supplier.supplier_name 
 	FROM supplier, (SELECT DISTINCT t1.supplier 
