@@ -1,7 +1,7 @@
 CREATE SEQUENCE part_number_seq Start with 50000;
 CREATE LANGUAGE plpgsql;
 CREATE OR REPLACE FUNCTION lab7()
-RETURNS ”trigger” AS
+RETURNS "trigger" AS
 $BODY$
 BEGIN
 NEW.part_number = nextval('part_number_seq');
