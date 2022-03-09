@@ -20,11 +20,12 @@ SELECT supplier.supplier_name
 	
 SELECT supplier.supplier_name 
 FROM (SELECT DISTINCT supplier 
-      FROM(SELECT part_number 
-	   FROM part_nyc except (SELECT part_number 
-				 FROM part_sfo))  AS TEMP , part_nyc 
-      				 WHERE part_nyc.part_number = TEMP.part_number) AS TEMP2, supplier 
-				 WHERE supplier.supplier_id = TEMP2.supplier;
+      FROM (SELECT part_number 
+	    FROM part_nyc 
+	    EXCEPT (SELECT part_number 
+		    FROM part_sfo))  AS TEMP , part_nyc 
+      		    WHERE part_nyc.part_number = TEMP.part_number) AS TEMP2, supplier 
+		    WHERE supplier.supplier_id = TEMP2.supplier;
 
 UPDATE part_nyc SET on_hand = -10;
 
