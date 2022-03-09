@@ -16,7 +16,7 @@ SELECT supplier.supplier_name
 	FROM supplier
 	INNER JOIN part_nyc ON supplier.supplier_id = part_nyc.supplier
 	INNER JOIN part_sfo ON supplier.supplier_id = part_sfo.supplier
-	GROUP BY S.supplier_name
+	GROUP BY supplier.supplier_name
 	HAVING SUM(part_nyc.on_hand) > SUM(part_sfo.on_hand);
 	
 	
