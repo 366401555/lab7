@@ -12,21 +12,21 @@ SELECT ((SELECT COUNT(*)
 	 		 	 		    FROM color 
 						    WHERE color_name = 'Red'))) AS Total_parts;
 			 
+SELECT supplier.supplier_name
+	FROM supplier
+	INNER JOIN part_nyc ON supplier.supplier_id = part_nyc.supplier
+	INNER JOIN part_sfo ON supplier.supplier_id = part_sfo.supplier
+	GROUP BY S.supplier_name
+	HAVING SUM(part_nyc.on_hand) > SUM(part_sfo.on_hand);
+	
+	
 SELECT supplier.supplier_name 
-	FROM supplier, (SELECT DISTINCT t1.supplier 
-					      FROM (SELECT DISTINCT supplier , SUM(on_hand) as total 
-						    FROM part_nyc GROUP BY supplier) AS t1, (SELECT DISTINCT supplier , SUM(on_hand) as total 
-											     from part_sfo 
-											     group by supplier) as t2 
-											     where t1.total > t2.total and t1.supplier = t2.supplier) as idid 
-											     where idid.supplier = supplier.supplier_id;
-select supplier.supplier_name 
-from (select distinct supplier 
-      from(select part_number 
-	   from part_nyc except (select part_number 
-				 from part_sfo))  as a , part_nyc 
-      				 where part_nyc.part_number = a.part_number) as id, supplier 
-				 where supplier.supplier_id = id.supplier;
+FROM (SELECT DISTINCT supplier 
+      FROM(SELECT part_number 
+	   FROM part_nyc except (SELECT part_number 
+				 FROM part_sfo))  AS TEMP , part_nyc 
+      				 WHERE part_nyc.part_number = TEMP.part_number) AS TEMP2, supplier 
+				 WHERE supplier.supplier_id = TEMP2.supplier;
 
 UPDATE part_nyc SET on_hand = -10;
 
