@@ -3,8 +3,7 @@ create table part_nyc (part_number integer,
                        supplier integer, 
                        color integer, 
                        on_hand integer, 
-                       descr text，
-                        primary key (part_number)); 
+                       descr text); 
 COPY part_nyc
 FROM 'part_nyc.dat'
 WITH DELIMITER ',';
@@ -14,8 +13,7 @@ create table part_sfo (part_number integer,
                        supplier integer,
                        color integer, 
                        on_hand integer, 
-                       descr text,
-                      primary key (part_number)); 
+                       descr text); 
 COPY part_sfo
 FROM 'part_sfo.dat'
 WITH DELIMITER ',';
