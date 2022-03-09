@@ -2,15 +2,13 @@ SELECT COUNT(part_number)
 	FROM part_nyc
 	WHERE on_hand > 70;
 
-SELECT ((SELECT COUNT(*) 
-	 FROM part_nyc 
-	 WHERE color = (SELECT color_id 
-			FROM color 
-			WHERE color_name = 'Red'))+(SELECT COUNT(*) 
-	 					    FROM part_sfo 
-	   					    WHERE color =  (SELECT color_id 
-	 		 	 		    FROM color 
-						    WHERE color_name = 'Red'))) AS Total_parts;
+SELECT SUM((SELECT COUNT(part_nyc.on_hand) 
+	 FROM part_nyc, color
+	 WHERE part_nyc.color = color.color_id AND color.color_name = 'Red') 
+	 UNION ALL 
+	 (SELECT COUNT(part_sfo.on_hand)
+	FROM part_sfo, color
+	WHERE part_sfo.color = color.color_id AND color.color_name = 'Red'));
 			 
 SELECT supplier.supplier_name
 	FROM supplier
