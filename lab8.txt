@@ -1,0 +1,112 @@
+Indexes in SQL are used to speed up SQL queries. Creating an index means the database will not have to scan the entire table looking for matches. 
+Instead, it will restrict its search to a small number of rows. 
+We set up the structure of storing the data with B-tree for 8 indexes in create_indexes.
+After executing the measure.sh for 6 queries, we have Query time with and without indexes, respectively. 
+So, we are going to run this execution file 5 times to calculate the average time across each query.
+jli675@wch133-24 $ source ./measure.sh
+#1
+Query time without indexes
+Query1: 20.069 ms
+Query2: 34.820 ms
+Query3: 109.516 ms
+Query4: 49.458 ms
+Query5: 236.334 ms
+Query6: 67.670 ms
+~
+Query time with indexes
+Query1: 1.428 ms
+Query2: 15.884 ms
+Query3: 18.575 ms
+Query4: 0.738 ms
+Query5: 9.267 ms
+Query6: 0.234 ms
+
+
+#2
+Query time without indexes
+Query1: 21.135 ms
+Query2: 36.799 ms
+Query3: 111.604 ms
+Query4: 50.332 ms
+Query5: 148.600 ms
+Query6: 61.333 ms
+~
+Query time with indexes
+Query1: 1.526 ms
+Query2: 17.024 ms
+Query3: 19.956 ms
+Query4: 0.783 ms
+Query5: 9.775 ms
+Query6: 0.251 ms
+
+
+#3
+Query time without indexes
+Query1: 12.646 ms
+Query2: 25.713 ms
+Query3: 94.791 ms
+Query4: 72.028 ms
+Query5: 121.758 ms
+Query6: 64.527 ms
+~
+Query time with indexes
+Query1: 1.751 ms
+Query2: 18.590 ms
+Query3: 21.992 ms
+Query4: 11.213 ms
+Query5: 9.897 ms
+Query6: 0.260 ms
+
+
+#4
+Query time without indexes
+Query1: 20.270 ms
+Query2: 36.321 ms
+Query3: 111.897 ms
+Query4: 49.204 ms
+Query5: 109.067 ms
+Query6: 71.415 ms
+~
+Query time with indexes
+Query1: 1.708 ms
+Query2: 18.961 ms
+Query3: 22.313 ms
+Query4: 0.830 ms
+Query5: 10.303 ms
+Query6: 0.257 ms
+
+
+#5
+Query time without indexes
+Query1: 20.239 ms
+Query2: 36.283 ms
+Query3: 116.229 ms
+Query4: 50.291 ms
+Query5: 270.016 ms
+Query6: 154.864 ms
+~
+Query time with indexes
+Query1: 0.861 ms
+Query2: 9.307 ms
+Query3: 12.921 ms
+Query4: 0.542 ms
+Query5: 6.253 ms
+Query6: 0.170 ms
+
+
+Average Query Time:
+Query time without indexes
+Query1:  18.872 ms
+Query2:  33.987 ms
+Query3:  108.807 ms
+Query4:  54.263 ms
+Query5:  177.166 ms
+Query6:  83.962 ms
+~
+Query time with indexes
+Query1:  1.455 ms   num of idx in use: 2
+Query2:  15.953 ms  num of idx in use: 2
+Query3:  19.151 ms  num of idx in use: 4
+Query4:  2.821 ms   num of idx in use: 3
+Query5:  9.099 ms   num of idx in use: 1
+Query6:  0.234 ms   num of idx in use: 1
