@@ -19,8 +19,7 @@ WHERE part_nyc.supplier = supplier.supplier_id)
 >
 (SELECT SUM(part_sfo.on_hand)
 FROM part_sfo
-WHERE part_sfo.supplier = supplier.supplier_id)
-GROUP BY supplier.supplier_name;
+WHERE part_sfo.supplier = supplier.supplier_id);
 	
 	
 SELECT supplier.supplier_name 
